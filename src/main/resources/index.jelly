@@ -1,0 +1,5 @@
+<?jelly escape-by-default='true'?>
+<div>
+  This plugin adds a column to the Nodes overview page reporting the "busy/total" executor
+  counts of each node.
+</div>
