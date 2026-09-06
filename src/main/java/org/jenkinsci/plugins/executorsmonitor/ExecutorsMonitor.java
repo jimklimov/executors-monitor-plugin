@@ -7,6 +7,7 @@ import hudson.node_monitors.AbstractNodeMonitorDescriptor;
 import hudson.node_monitors.NodeMonitor;
 import java.io.Serializable;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 
 /**
  * Reports the "busy/total" executor counts of each node on the Nodes overview page.
@@ -16,8 +17,24 @@ import org.kohsuke.stapler.DataBoundConstructor;
  */
 public class ExecutorsMonitor extends NodeMonitor {
 
+    private boolean colorize;
+
     @DataBoundConstructor
     public ExecutorsMonitor() {}
+
+    /**
+     * Whether the busy/total counts should be colorized (blue/green/red) depending on
+     * how busy the node is. Defaults to {@code false}, i.e. the counts are rendered
+     * in the default color unless this is explicitly enabled.
+     */
+    public boolean isColorize() {
+        return colorize;
+    }
+
+    @DataBoundSetter
+    public void setColorize(boolean colorize) {
+        this.colorize = colorize;
+    }
 
     @Override
     public Object data(Computer c) {

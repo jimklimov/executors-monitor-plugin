@@ -5,7 +5,7 @@ to report the "busy/total" executor counts on the Nodes overview page.
 
 It does not define any thresholds to offline "misbehaving" nodes.
 
-The reported column is colorized:
+Includes a configurable option for the reported column to be colorized:
 
 * blue for "0 busy",
 * green for "busy < total",
