@@ -1,5 +1,5 @@
 <?jelly escape-by-default='true'?>
 <div>
   This plugin adds a column to the Nodes overview page reporting the "busy/total" executor
-  counts of each node.
+  counts of each node. It does not define any threshold and never takes a node offline.
 </div>

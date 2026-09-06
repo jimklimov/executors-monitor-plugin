@@ -11,8 +11,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 /**
  * Reports the "busy/total" executor counts of each node on the Nodes overview page.
  *
- * This is purely informational: unlike the disk space or response time monitors, it does not
- * define any threshold and never takes a node offline.
+ * This is purely informational: unlike the disk space or response time monitors,
+ * it does not define any threshold and never takes a node offline.
  */
 public class ExecutorsMonitor extends NodeMonitor {
 
@@ -21,8 +21,9 @@ public class ExecutorsMonitor extends NodeMonitor {
 
     @Override
     public Object data(Computer c) {
-        // Executor counts are already held in memory on the controller, so there is no need to
-        // go through the periodic monitor()/get() caching used by monitors that need to contact the node.
+        // Executor counts are already held in memory on the controller,
+        // so there is no need to go through the periodic monitor()/get()
+        // caching used by common monitors that need to contact the node.
         return new Executors(c.countBusy(), c.countExecutors());
     }
 
