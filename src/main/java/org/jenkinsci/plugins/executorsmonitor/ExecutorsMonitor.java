@@ -17,8 +17,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 public class ExecutorsMonitor extends NodeMonitor {
 
     @DataBoundConstructor
-    public ExecutorsMonitor() {
-    }
+    public ExecutorsMonitor() {}
 
     @Override
     public Object data(Computer c) {
