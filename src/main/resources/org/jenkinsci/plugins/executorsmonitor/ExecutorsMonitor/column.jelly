@@ -5,7 +5,8 @@
       <td align="right" data="-1">N/A</td>
     </j:when>
     <j:otherwise>
-      <td align="right" data="${data.busy}">${data}</td>
+      <td align="right" data="${data.busy}"
+          style="${data.busy == 0 ? 'color:blue' : (data.busy lt data.total ? 'color:green' : (data.busy gt data.total ? 'color:red' : ''))}">${data}</td>
     </j:otherwise>
   </j:choose>
 </j:jelly>
