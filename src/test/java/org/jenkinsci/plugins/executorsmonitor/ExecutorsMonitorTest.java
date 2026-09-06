@@ -1,24 +1,24 @@
 package org.jenkinsci.plugins.executorsmonitor;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.jenkinsci.plugins.executorsmonitor.ExecutorsMonitor.Executors;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class ExecutorsMonitorTest {
+class ExecutorsMonitorTest {
 
     @Test
-    public void toStringIsBusySlashTotal() {
+    void toStringIsBusySlashTotal() {
         assertEquals("2/5", new Executors(2, 5).toString());
     }
 
     @Test
-    public void toStringWithNoExecutors() {
+    void toStringWithNoExecutors() {
         assertEquals("0/0", new Executors(0, 0).toString());
     }
 
     @Test
-    public void exposesBusyAndTotal() {
+    void exposesBusyAndTotal() {
         Executors executors = new Executors(3, 4);
         assertEquals(3, executors.getBusy());
         assertEquals(4, executors.getTotal());
