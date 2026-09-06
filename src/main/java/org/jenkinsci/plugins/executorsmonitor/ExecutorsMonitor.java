@@ -42,6 +42,11 @@ public class ExecutorsMonitor extends NodeMonitor {
         public String getDisplayName() {
             return Messages.executorsmonitor_displayName();
         }
+
+        @Override
+        public boolean canTakeOffline() {
+            return false;
+        }
     }
 
     public static final class Executors implements Serializable {
