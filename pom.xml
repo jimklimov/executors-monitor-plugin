@@ -5,9 +5,10 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>5.18</version>
+    <version>6.2211.v27f680c93c53</version>
     <relativePath />
   </parent>
+
   <groupId>io.jenkins.plugins</groupId>
   <artifactId>executors-monitor</artifactId>
   <version>${changelist}</version>
@@ -17,6 +18,7 @@
   <description>This plugin adds a column to the Nodes overview page reporting the "busy/total" executor counts of each node.
 	It is purely informational: it does not define any threshold and never takes a node offline.</description>
   <url>https://github.com/${gitHubRepo}</url>
+  <inceptionYear>2026</inceptionYear>
 
   <licenses>
     <license>
@@ -34,10 +36,25 @@
 
   <properties>
     <changelist>999999-SNAPSHOT</changelist>
-    <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-    <jenkins.baseline>2.555</jenkins.baseline>
-    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
+    <hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>
+    <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
+    <jenkins.baseline>2.541</jenkins.baseline>
+    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
+
+    <no-test-jar>false</no-test-jar>
+    <!-- Do not run extra reporting for pmd -->
+    <!-- https://stackoverflow.com/questions/12038238/unable-to-locate-source-xref-to-link-to -->
+    <linkXRef>false</linkXRef>
+
+    <spotless.check.skip>false</spotless.check.skip>
+
+    <ban-commons-lang-2.skip>false</ban-commons-lang-2.skip>
+    <ban-junit4-imports.skip>true</ban-junit4-imports.skip>
+    <ban-deprecated-stapler.skip>false</ban-deprecated-stapler.skip>
+    <banObsoleteDependencyOverrides.skip>false</banObsoleteDependencyOverrides.skip>
+    <spotbugs.effort>Max</spotbugs.effort>
+    <spotbugs.threshold>Low</spotbugs.threshold>
   </properties>
 
   <repositories>
@@ -52,5 +69,17 @@
       <url>https://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom-${jenkins.baseline}.x</artifactId>
+        <version>6815.v1fb_2a_fee3765</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 </project>
