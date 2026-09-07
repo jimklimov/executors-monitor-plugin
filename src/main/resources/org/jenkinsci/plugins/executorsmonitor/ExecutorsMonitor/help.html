@@ -1,6 +1,13 @@
 <div>
-  This monitor reports the number of busy executors out of the total number of executors configured
-  for each node, e.g. <code>2/5</code>.
+  This monitor reports the number of executors "busy" with work, the "total" number of executors
+  currently allowed to be live on the computer, and the number of executors "configured" on the node,
+  e.g. <code>2/5/5</code>.
+  <br/>
+  The total and configured counts may temporarily differ, e.g. right after the configured executor
+  count of a node is lowered while some of its executors are still busy.
+  <br/>
+  Optionally, the counts can be colorized: blue when the node is fully idle, green when it has spare
+  live executors, and red when more executors are busy than configured (an overcommitted node).
   <br/>
   It never marks an agent offline.
 </div>

@@ -8,19 +8,20 @@ import org.junit.jupiter.api.Test;
 class ExecutorsMonitorTest {
 
     @Test
-    void toStringIsBusySlashTotal() {
-        assertEquals("2/5", new Executors(2, 5).toString());
+    void toStringIsBusySlashTotalSlashConfigured() {
+        assertEquals("2/5/5", new Executors(2, 5, 5).toString());
     }
 
     @Test
     void toStringWithNoExecutors() {
-        assertEquals("0/0", new Executors(0, 0).toString());
+        assertEquals("0/0/0", new Executors(0, 0, 0).toString());
     }
 
     @Test
-    void exposesBusyAndTotal() {
-        Executors executors = new Executors(3, 4);
+    void exposesBusyTotalAndConfigured() {
+        Executors executors = new Executors(3, 4, 2);
         assertEquals(3, executors.getBusy());
         assertEquals(4, executors.getTotal());
+        assertEquals(2, executors.getConfigured());
     }
 }
