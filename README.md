@@ -20,3 +20,8 @@ or larger than it if the configuration was reduced but more executors were
 running and still remain active -- then the "total" value would shrink over
 time until it matches "configured").
 
+## Example of colorized output
+
+![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
+* *Colorized "busy/total" example from an earlier version*
+
