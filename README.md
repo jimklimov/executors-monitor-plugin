@@ -1,6 +1,6 @@
 # Executors Monitor Plugin
 
-This is a simple link:http://javadoc.jenkins-ci.org/hudson/node_monitors/NodeMonitor.html[NodeMonitor]
+This is a simple [NodeMonitor](http://javadoc.jenkins-ci.org/hudson/node_monitors/NodeMonitor.html)
 to report the "busy/total/configured" executor counts on the Nodes overview page.
 
 It does not define any thresholds to offline "misbehaving" nodes.
