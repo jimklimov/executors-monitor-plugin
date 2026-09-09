@@ -49,7 +49,8 @@ public class ExecutorsMonitor extends NodeMonitor {
         return new Executors(c.countBusy(), c.countExecutors(), c.getNumExecutors());
     }
 
-    @Extension @Symbol("executors")
+    @Extension
+    @Symbol("executors")
     public static final class DescriptorImpl extends AbstractNodeMonitorDescriptor<Executors> {
 
         @Override
