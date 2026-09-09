@@ -1,4 +1,10 @@
-# Executors Monitor Plugin
+# Executors Monitor Plugin for Jenkins
+
+[![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/executors-monitor-plugin.svg)](https://plugins.jenkins.io/executors-monitor-plugin)
+[![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/executors-monitor-plugin.svg?color=blue)](https://plugins.jenkins.io/executors-monitor-plugin)
+[![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins%2Fexecutors-monitor-plugin%2Fmaster)](https://ci.jenkins.io/job/Plugins/job/executors-monitor-plugin/job/master/)
+[![Codecov](https://codecov.io/gh/jenkinsci/executors-monitor-plugin/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jenkinsci/executors-monitor-plugin)
+
 
 This is a simple [NodeMonitor](http://javadoc.jenkins-ci.org/hudson/node_monitors/NodeMonitor.html)
 to report the "busy/total/configured" executor counts on the Nodes overview page.
