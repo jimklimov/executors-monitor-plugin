@@ -6,6 +6,7 @@ import hudson.model.Computer;
 import hudson.node_monitors.AbstractNodeMonitorDescriptor;
 import hudson.node_monitors.NodeMonitor;
 import java.io.Serializable;
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
@@ -48,9 +49,7 @@ public class ExecutorsMonitor extends NodeMonitor {
         return new Executors(c.countBusy(), c.countExecutors(), c.getNumExecutors());
     }
 
-    @Extension
-    public static final DescriptorImpl DESCRIPTOR = new DescriptorImpl();
-
+    @Extension @Symbol("executors")
     public static final class DescriptorImpl extends AbstractNodeMonitorDescriptor<Executors> {
 
         @Override
