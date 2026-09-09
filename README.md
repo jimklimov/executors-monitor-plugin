@@ -31,6 +31,9 @@ time until it matches "configured").
 ![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
 * *Colorized "busy/total" example from an earlier version*
 
+![Colorized "busy/total/cfg" example with an overbooked agent](doc/images/screenshot3.png "Colorized busy/total/cfg example with an overbooked agent")
+* *Colorized "busy/total/cfg" example with an overbooked agent*
+
 ## Contributing
 
 To build, check out the code, experiment, and run `mvn package` to fire all
