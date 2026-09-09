@@ -25,3 +25,9 @@ time until it matches "configured").
 ![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
 * *Colorized "busy/total" example from an earlier version*
 
+## Contributing
+
+To build, check out the code, experiment, and run `mvn package` to fire all
+the required tests. Keep watch on `mvn spotless:apply` formatting standard.
+
+All source code is licensed under the MIT license.
