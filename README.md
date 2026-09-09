@@ -1,6 +1,6 @@
 # Executors Monitor Plugin for Jenkins
 
-[![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/executors-monitor-plugin.svg)](https://plugins.jenkins.io/executors-monitor-plugin)
+[![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/executors-monitor.svg)](https://plugins.jenkins.io/executors-monitor)
 [![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/executors-monitor.svg?color=blue&label=installations)](https://plugins.jenkins.io/executors-monitor)
 [![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins%2Fexecutors-monitor-plugin%2Fmaster)](https://ci.jenkins.io/job/Plugins/job/executors-monitor-plugin/job/master/)
 [![Jenkins Security Scan](https://github.com/jenkinsci/executors-monitor-plugin/actions/workflows/jenkins-security-scan.yml/badge.svg)](https://github.com/jenkinsci/executors-monitor-plugin/actions/workflows/jenkins-security-scan.yml)
