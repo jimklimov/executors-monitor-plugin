@@ -6,7 +6,7 @@
     </j:when>
     <j:otherwise>
       <td align="right" data="${data.busy}"
-          style="${from.colorize ? (data.busy gt data.configured ? 'color:red' : (data.busy == 0 ? 'color:blue' : (data.busy lt data.total ? 'color:green' : ''))) : ''}">${data}</td>
+          style="${from.colorize ? (data.busy gt data.configured ? 'color:var(--red)' : (data.busy == 0 ? 'color:var(--blue)' : (data.busy lt data.total ? 'color:var(--green)' : ''))) : ''}">${data}</td>
     </j:otherwise>
   </j:choose>
 </j:jelly>
