@@ -26,13 +26,33 @@ or larger than it if the configuration was reduced but more executors were
 running and still remain active -- then the "total" value would shrink over
 time until it matches "configured").
 
+There is also a configurable option to report the queue pressure for the node: the number
+of buildable queue items that it could take, using the same detection method as the
+[computer-queue-plugin](https://github.com/jenkinsci/computer-queue-plugin). Such an item is
+not necessarily exclusive to this node: another suitable node might pick it up first (e.g. if
+it comes online, or finishes some other work earlier). When enabled, the column name gains a
+"/queued" suffix and the reported value gains a space-separated `q:N` token, e.g. `3/3/2 q:5`.
+If colorizing is also enabled, this queue count is colorized:
+
+* blue for "0 queued",
+* green while the queued count does not exceed "configured",
+* unmodified while it does not exceed "configured" times a configurable factor "N"
+  (an integer greater than 1 if set, by default 5),
+* red beyond that.
+
 ## Example of colorized output
 
-![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
-* *Colorized "busy/total" example from an earlier version*
+* *Colorized "busy/total" example from an earlier version*:
+  - ![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
 
-![Colorized "busy/total/cfg" example with an overbooked agent](doc/images/screenshot3.png "Colorized busy/total/cfg example with an overbooked agent")
-* *Colorized "busy/total/cfg" example with an overbooked agent*
+* *Colorized "busy/total/cfg" example with an overbooked agent*:
+  - ![Colorized "busy/total/cfg" example with an overbooked agent](doc/images/screenshot3.png "Colorized busy/total/cfg example with an overbooked agent")
+
+* *Colorized "busy/total/cfg queue" examples*:
+  - Quiet: ![Quiet system](doc/images/screenshot4-quiet.png "Quiet system")
+  - Load low: ![Load within configured capacity](doc/images/screenshot4-green.png "Load within configured capacity")
+  - Load normal: ![Load between 'configured' and configured threshold (configured * 5)](doc/images/screenshot4-normal.png "Load between 'configured' and configured threshold (configured * 5)")
+  - Overbooked: ![Overbooked agent](doc/images/screenshot4-overbooked.png "Overbooked agent")
 
 ## Contributing
 
