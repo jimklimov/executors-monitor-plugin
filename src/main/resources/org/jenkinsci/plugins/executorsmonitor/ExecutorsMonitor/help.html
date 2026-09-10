@@ -9,5 +9,12 @@
   Optionally, the counts can be colorized: blue when the node is fully idle, green when it has spare
   live executors, and red when more executors are busy than configured (an overcommitted node).
   <br/>
+  Optionally, the column can also report the number of buildable queue items that this node could
+  take (not necessarily exclusively -- another suitable node might pick one up first), appended as
+  e.g. <code>3/3/2 q:5</code> and reflected in the column name as "/queued". When colorizing is also
+  enabled, this queue count is blue when empty, green while it does not exceed the configured
+  executor count, uncolored while it does not exceed the configured executor count times a
+  configurable factor N (an integer greater than 1, default 5), and red beyond that.
+  <br/>
   It never marks an agent offline.
 </div>
