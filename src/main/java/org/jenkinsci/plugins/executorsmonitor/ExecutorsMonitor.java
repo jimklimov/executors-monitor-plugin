@@ -9,6 +9,7 @@ import hudson.node_monitors.AbstractNodeMonitorDescriptor;
 import hudson.node_monitors.NodeMonitor;
 import hudson.util.FormValidation;
 import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
@@ -107,12 +108,54 @@ public class ExecutorsMonitor extends NodeMonitor {
             return 0;
         }
         int count = 0;
-        for (Queue.Item item : Queue.getInstance().getItems()) {
+        for (Queue.Item item : getQueueItems()) {
             if (item instanceof Queue.BuildableItem buildableItem && node.canTake(buildableItem) == null) {
                 count++;
             }
         }
         return count;
+    }
+
+    private static final long QUEUE_SNAPSHOT_TTL_MILLIS = TimeUnit.SECONDS.toMillis(10);
+
+    /**
+     * Not part of this monitor's persisted state: a purely in-memory, best-effort cache of
+     * the live build queue, shared by all nodes rendered on the same page. {@code static} so
+     * it is never touched by XStream; {@code transient} and {@code volatile} to underline
+     * that intent and keep the lock-free refresh below visible across threads.
+     */
+    private static transient volatile QueueSnapshot queueSnapshot;
+
+    /**
+     * Returns a recent (at most {@link #QUEUE_SNAPSHOT_TTL_MILLIS} old) snapshot of
+     * {@link Queue#getItems()}, refreshing it first if it is missing or stale.
+     *
+     * <p>Nodes overview pages with many nodes would otherwise call {@code Queue.getItems()}
+     * once per node/row, each call taking the live queue's internal lock and copying its
+     * item list. Reusing a short-lived snapshot collapses that to about once per page load.
+     * The refresh below is intentionally not synchronized: at worst a couple of threads race
+     * to refresh an expired snapshot at the same time, which is far cheaper than adding a lock
+     * of our own around the real queue's lock.
+     */
+    private static Queue.Item[] getQueueItems() {
+        QueueSnapshot snapshot = queueSnapshot;
+        long now = System.currentTimeMillis();
+        if (snapshot == null || now - snapshot.timestamp >= QUEUE_SNAPSHOT_TTL_MILLIS) {
+            snapshot = new QueueSnapshot(Queue.getInstance().getItems(), now);
+            queueSnapshot = snapshot;
+        }
+        return snapshot.items;
+    }
+
+    /** Ephemeral cache entry, see {@link #queueSnapshot}. Never persisted. */
+    private static final class QueueSnapshot {
+        private final transient Queue.Item[] items;
+        private final transient long timestamp;
+
+        QueueSnapshot(Queue.Item[] items, long timestamp) {
+            this.items = items;
+            this.timestamp = timestamp;
+        }
     }
 
     @Extension
