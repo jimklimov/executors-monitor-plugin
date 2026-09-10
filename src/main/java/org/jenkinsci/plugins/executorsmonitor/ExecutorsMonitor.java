@@ -10,10 +10,12 @@ import hudson.node_monitors.NodeMonitor;
 import hudson.util.FormValidation;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
+import jenkins.model.Jenkins;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.verb.POST;
 
 /**
  * Reports the "busy/total/configured" executor counts of each node on the Nodes overview page.
@@ -180,7 +182,13 @@ public class ExecutorsMonitor extends NodeMonitor {
             return false;
         }
 
+        @POST
         public FormValidation doCheckQueueThresholdFactor(@QueryParameter String value) {
+            // Configuring node monitors requires Jenkins.MANAGE (see ComputerSet#doConfigSubmit);
+            // this check just avoids performing validation for users who could not submit it anyway.
+            if (!Jenkins.get().hasPermission(Jenkins.MANAGE)) {
+                return FormValidation.ok();
+            }
             try {
                 if (Integer.parseInt(value) <= 1) {
                     return FormValidation.error("Must be greater than 1");
