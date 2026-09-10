@@ -50,7 +50,8 @@ If colorizing is also enabled, this queue count is colorized:
 
 * *Colorized "busy/total/cfg queue" examples*:
   - Quiet: ![Quiet system](doc/images/screenshot4-quiet.png "Quiet system")
-  - Load okay: ![Load within configured capacity](doc/images/screenshot4-green.png "Load within configured capacity")
+  - Load low: ![Load within configured capacity](doc/images/screenshot4-green.png "Load within configured capacity")
+  - Load normal: ![Load between 'configured' and configured threshold (configured * 5)](doc/images/screenshot4-normal.png "Load between 'configured' and configured threshold (configured * 5)")
   - Overbooked: ![Overbooked agent](doc/images/screenshot4-overbooked.png "Overbooked agent")
 
 ## Contributing
