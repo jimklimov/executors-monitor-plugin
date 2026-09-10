@@ -42,11 +42,16 @@ If colorizing is also enabled, this queue count is colorized:
 
 ## Example of colorized output
 
-![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
-* *Colorized "busy/total" example from an earlier version*
+* *Colorized "busy/total" example from an earlier version*:
+  - ![Colorized "busy/total" example from an earlier version](doc/images/screenshot2.png "Colorized busy/total example from an earlier version")
 
-![Colorized "busy/total/cfg" example with an overbooked agent](doc/images/screenshot3.png "Colorized busy/total/cfg example with an overbooked agent")
-* *Colorized "busy/total/cfg" example with an overbooked agent*
+* *Colorized "busy/total/cfg" example with an overbooked agent*:
+  - ![Colorized "busy/total/cfg" example with an overbooked agent](doc/images/screenshot3.png "Colorized busy/total/cfg example with an overbooked agent")
+
+* *Colorized "busy/total/cfg queue" examples*:
+  - Quiet: ![Quiet system](doc/images/screenshot4-quiet.png "Quiet system")
+  - Load okay: ![Load within configured capacity](doc/images/screenshot4-green.png "Load within configured capacity")
+  - Overbooked: ![Overbooked agent](doc/images/screenshot4-overbooked.png "Overbooked agent")
 
 ## Contributing
 
