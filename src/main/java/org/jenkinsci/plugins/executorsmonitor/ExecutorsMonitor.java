@@ -29,12 +29,28 @@ import org.kohsuke.stapler.verb.POST;
  */
 public class ExecutorsMonitor extends NodeMonitor {
 
+    private static final int DEFAULT_QUEUE_THRESHOLD_FACTOR = 5;
+
     private boolean colorize;
     private boolean countQueue;
-    private int queueThresholdFactor = 5;
+    private int queueThresholdFactor = DEFAULT_QUEUE_THRESHOLD_FACTOR;
 
     @DataBoundConstructor
     public ExecutorsMonitor() {}
+
+    /**
+     * XStream reconstructs already-persisted instances without calling the constructor, so
+     * the {@link #queueThresholdFactor} field initializer above never runs for configs saved
+     * before that field existed -- it silently comes back as the Java default of 0 instead.
+     * Since 0 (and 1) are not valid values anyway (see {@link #getQueueThresholdFactor()}),
+     * treat them as "unset" here and repair them to the real default.
+     */
+    protected Object readResolve() {
+        if (queueThresholdFactor <= 1) {
+            queueThresholdFactor = DEFAULT_QUEUE_THRESHOLD_FACTOR;
+        }
+        return this;
+    }
 
     /**
      * Whether the busy/total counts should be colorized (blue/green/red) depending on
@@ -191,7 +207,8 @@ public class ExecutorsMonitor extends NodeMonitor {
             }
             try {
                 if (Integer.parseInt(value) <= 1) {
-                    return FormValidation.error("Must be greater than 1");
+                    return FormValidation.error("Must be greater than 1, invalid values will default to "
+                            + ExecutorsMonitor.DEFAULT_QUEUE_THRESHOLD_FACTOR);
                 }
             } catch (NumberFormatException e) {
                 return FormValidation.error("Must be a number");

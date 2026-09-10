@@ -6,7 +6,7 @@
   <f:entry title="Report queue pressure (buildable items this node could take)" field="countQueue">
     <f:checkbox checked="${instance.countQueue}" />
   </f:entry>
-  <f:entry title="Queue threshold multiplier N (uncolored while queued does not exceed configured x N; must be &gt; 1 to be seen)" field="queueThresholdFactor">
+  <f:entry title="Queue threshold multiplier N (uncolored while queued is above configured but does not exceed configured x N; must be &gt; 1 to be seen)" field="queueThresholdFactor">
     <f:number clazz="positive-number" value="${instance.queueThresholdFactor}" default="5" />
   </f:entry>
 </j:jelly>
